@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/dashboard :: head}">
+
+</head>
+<body
+	class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+	<div class="wrapper">
+		<!-- Navbar -->
+		<nav th:replace="~{admin/dashboard :: navbar}"
+			class="main-header navbar navbar-expand navbar-white navbar-light">
+
+		</nav>
+		<!-- /.navbar -->
+
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4"
+			th:replace="~{admin/dashboard :: mainBar}"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" style="min-height: 1403.62px;">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1>User Data</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a th:href="@{~/}">Home</a></li>
+								<li class="breadcrumb-item active">User Details</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<!-- Main content -->
+
+			<!-- /.content -->
+			<section class="content" id="TableShowHide">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h3 class="card-title">User Details</h3>
+								</div>
+								<!-- /.card-header -->
+								<div class="card-body">
+									<table id="example1" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>User Name</th>
+												<th>Phone Number</th>
+												<th>Email</th>
+												<th>User Type</th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="user : ${list}">
+												<td th:text="${user.id}" id="id"></td>
+												<td th:text="${user.name}" id="name"></td>
+												<td th:text="${user.phoneNumber}" id="phoneNumber"></td>
+												<td th:text="${user.email}" id="email"></td>
+												<td th:text="${user.userType}" id="userType"></td>
+
+											</tr>
+
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>Id</th>
+												<th>User Name</th>
+												<th>Phone Number</th>
+												<th>Email</th>
+												<th>User Type</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</section>
+			<div id="myModal" class="modal1">
+
+				<!-- Modal content -->
+				<div class="modal-content1">
+					<span class="close">&times;</span>
+					<canvas id="qr-code"></canvas>
+				</div>
+
+			</div>
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="~{admin/dashboard :: footer}">
+		</footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	<script src="admin/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+	<!-- bs-custom-file-input -->
+	<script
+		src="admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="admin/dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="admin/dist/js/demo.js"></script>
+	<!-- Page specific script -->
+
+	<script
+		src="admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="admin/dist/js/adminlte.js"></script>
+
+	<!-- PAGE PLUGINS -->
+	<!-- jQuery Mapael -->
+	<script src="admin/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="admin/plugins/raphael/raphael.min.js"></script>
+	<script src="admin/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="admin/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+	<!-- ChartJS -->
+	<script src="admin/plugins/chart.js/Chart.min.js"></script>
+
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script src="admin/dist/js/pages/dashboard2.js"></script>
+
+	<!-- DataTables  & Plugins -->
+	<script src="admin/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+	<script
+		src="admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+	<script
+		src="admin/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="admin/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+	<script src="admin/plugins/jszip/jszip.min.js"></script>
+	<script src="admin/plugins/pdfmake/pdfmake.min.js"></script>
+	<script src="admin/plugins/pdfmake/vfs_fonts.js"></script>
+	<script src="admin/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+	<script src="admin/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+	<script src="admin/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+	<script src="admin/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+	<script>
+		$(function() {
+			bsCustomFileInput.init();
+		});
+	</script>
+
+	<script>
+		$(function() {
+			$("#example1").DataTable(
+					{
+						"responsive" : true,
+						"lengthChange" : false,
+						"autoWidth" : false,
+						"buttons" : [ "copy", "csv", "excel", "pdf", "print",
+								"colvis" ]
+					}).buttons().container().appendTo(
+					'#example1_wrapper .col-md-6:eq(0)');
+			$('#example2').DataTable({
+				"paging" : true,
+				"lengthChange" : false,
+				"searching" : false,
+				"ordering" : true,
+				"info" : true,
+				"autoWidth" : false,
+				"responsive" : true,
+			});
+		});
+	</script>
+
+	<script>
+		$(function() {
+			$(document).on('click', '[data-toggle="lightbox"]',
+					function(event) {
+						event.preventDefault();
+						$(this).ekkoLightbox({
+							alwaysShowClose : true
+						});
+					});
+
+			$('.filter-container').filterizr({
+				gutterPixels : 3
+			});
+			$('.btn[data-filter]').on('click', function() {
+				$('.btn[data-filter]').removeClass('active');
+				$(this).addClass('active');
+			});
+		})
+	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// Get the <span> element that closes the modal
+			var qr;
+			(function() {
+				qr = new QRious({
+					element : document.getElementById('qr-code'),
+					size : 200,
+					value : 'https://studytonight.com'
+				});
+			})();
+			var span = document.getElementsByClassName("close")[0];
+			var modal = document.getElementById("myModal");
+			$(".qr").click(function() {
+				var qrtext = $(this).val();
+				qr.set({
+					foreground : 'black',
+					size : 200,
+					value : qrtext
+				});
+				modal.style.display = "block";
+			});
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+		});
+	</script>
+</body>
+</html>

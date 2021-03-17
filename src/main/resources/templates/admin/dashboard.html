@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kash-V</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+	href="admin/plugins/fontawesome-free/css/all.min.css">
+
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	href="admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+
+<!-- Theme style -->
+<link rel="stylesheet" href="admin/dist/css/adminlte.min.css">
+
+<!--  timeline -->
+<link rel="stylesheet" href="admin/dist/css/timeline.css">
+
+<!-- DataTables -->
+<link rel="stylesheet"
+	href="admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+<!-- Ekko Lightbox -->
+<link rel="stylesheet"
+	href="admin/plugins/ekko-lightbox/ekko-lightbox.css">
+<style type="text/css">
+.loader {
+	visibility: hidden;
+	position: absolute;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid blue;
+	border-bottom: 16px solid blue;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+
+@
+-webkit-keyframes spin { 0% {
+	-webkit-transform: rotate(0deg);
+}
+100
+%
+{
+-webkit-transform
+:
+rotate
+(
+360deg
+)
+;
+}
+}
+@
+keyframes spin { 0% {
+	transform: rotate(0deg);
+}
+100
+%
+{
+transform
+:
+rotate
+(
+360deg
+)
+;
+}
+}
+}
+</style>
+<style type="text/css">
+/* The Modal (background) */
+.modal1 {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content1 {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 25%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
+</head>
+<body
+	class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+	<div class="wrapper">
+		<!-- Navbar -->
+		<nav th:fragment="navbar"
+			class="main-header navbar navbar-expand navbar-white navbar-light">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
+					href="#" role="button"><i class="fas fa-bars"></i></a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a
+					th:href="@{~/}" class="nav-link">Home</a></li>
+
+			</ul>
+
+			<!-- SEARCH FORM -->
+			<form class="form-inline ml-3">
+				<div class="input-group input-group-sm">
+					<input class="form-control form-control-navbar" type="search"
+						placeholder="Search" aria-label="Search">
+					<div class="input-group-append">
+						<button class="btn btn-navbar" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+
+			<!-- Right navbar links -->
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link"
+					data-widget="fullscreen" href="#" role="button"> <i
+						class="fas fa-expand-arrows-alt"></i>
+				</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a
+					th:href="@{~/logout}" class="nav-link">Log-Out</a></li>
+			</ul>
+		</nav>
+		<!-- /.navbar -->
+
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4"
+			th:fragment="mainBar">
+			<!-- Brand Logo -->
+			<a th:href="@{~/}" class="brand-link text-center"> <span
+				class="brand-text font-weight-light">KASH - V</span>
+			</a>
+
+			<!-- Sidebar -->
+			<div class="sidebar">
+				<!-- Sidebar user panel (optional) -->
+				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+					<div class="image">
+						<img src="admin/dist/img/user2-160x160.jpg"
+							class="img-circle elevation-2" alt="User Image">
+					</div>
+					<div class="info">
+						<a href="#" class="d-block">Admin</a>
+					</div>
+				</div>
+
+				<!-- SidebarSearch Form -->
+				<div class="form-inline">
+					<div class="input-group" data-widget="sidebar-search">
+						<input class="form-control form-control-sidebar" type="search"
+							placeholder="Search" aria-label="Search">
+						<div class="input-group-append">
+							<button class="btn btn-sidebar">
+								<i class="fas fa-search fa-fw"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column"
+						data-widget="treeview" role="menu" data-accordion="false">
+						<!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+						<li class="nav-item"><a th:href="@{~/}" class="nav-link">
+								<i class="nav-icon fas fa-tachometer-alt"></i>
+								<p>Dashboard</p>
+						</a></li>
+
+
+						<li class="nav-item" th:if="${session.type} == 'SUPER_ADMIN'"><a
+							href="#" class="nav-link"> <i class="nav-icon fas fa-table"></i>
+								<p>
+									User <i class="fas fa-angle-left right"></i><span
+										class="badge badge-info right">2</span>
+								</p>
+						</a>
+							<ul class="nav nav-treeview" style="display: none;">
+								<li class="nav-item"><a th:href="@{~/getAdmin}"
+									class="nav-link"> <i
+										class="nav-icon fas fa-user text-green"></i>
+										<p>Admin Details</p>
+								</a></li>
+								<li class="nav-item"><a th:href="@{~/getUser}"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+										<p>User Details</p>
+								</a></li>
+
+							</ul></li>
+
+						<!-- 						<li class="nav-item"><a href="#" class="nav-link"> <i -->
+						<!-- 								class="nav-icon fas fa-copy"></i> -->
+						<!-- 								<p> -->
+						<!-- 									Product <i class="fas fa-angle-left right"></i> <span -->
+						<!-- 										class="badge badge-info right">1</span> -->
+						<!-- 								</p> -->
+						<!-- 						</a> -->
+						<!-- 							<ul class="nav nav-treeview"> -->
+
+						<!-- 								<li class="nav-item"><a th:href="@{~/getMasterData}" -->
+						<!-- 									class="nav-link"> <i class="far fa-circle nav-icon"></i> -->
+						<!-- 										<p>Master Product</p> -->
+						<!-- 								</a></li> -->
+
+						<!-- 							</ul></li> -->
+						<!-- 						<li class="nav-item"><a th:href="@{~/getShop}" -->
+						<!-- 							class="nav-link"> <i class="nav-icon fas fa-th"></i> -->
+						<!-- 								<p>Shop</p> -->
+						<!-- 						</a></li> -->
+						<!-- 						<li class="nav-item"><a th:href="@{~/getUser}" -->
+						<!-- 							class="nav-link"> <i class="nav-icon fas fa-user text-green"></i> -->
+						<!-- 								<p>User Details</p> -->
+						<!-- 						</a></li> -->
+						<!-- 						<li class="nav-item"><a th:href="@{~/getOrders}" -->
+						<!-- 							class="nav-link"> <i -->
+						<!-- 								class="nav-icon far fa-circle text-danger"></i> -->
+						<!-- 								<p>Order Details</p> -->
+						<!-- 						</a></li> -->
+						<!-- 						<li class="nav-item"><a th:href="@{~/getAdvertisement}" -->
+						<!-- 							class="nav-link"> <i -->
+						<!-- 								class="nav-icon far fa-image text-yellow"></i> -->
+						<!-- 								<p>Advertisement Details</p> -->
+						<!-- 						</a></li> -->
+
+					</ul>
+				</nav>
+				<!-- /.sidebar-menu -->
+			</div>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0">Dashboard</h1>
+						</div>
+						<!-- /.col -->
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a th:href="@{~/}">Home</a></li>
+								<li class="breadcrumb-item active">Dashboard</li>
+							</ol>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			<section class="content">
+				<div class="container-fluid">
+					<!-- Info boxes -->
+					<div class="row">
+						<!-- ./col -->
+						<div class="col-lg-3 col-6">
+							<!-- small box -->
+							<div class="small-box bg-success">
+								<div class="inner text-center">
+									<h3>0</h3>
+
+									<p>A</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-stats-bars"></i>
+								</div>
+							</div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-3 col-6">
+							<!-- small box -->
+							<div class="small-box bg-warning">
+								<div class="inner text-center">
+									<h3>0</h3>
+
+									<p>B</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-person-add"></i>
+								</div>
+							</div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-3 col-6">
+							<!-- small box -->
+							<div class="small-box bg-danger">
+								<div class="inner text-center">
+									<h3>0</h3>
+
+									<p>C</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-pie-graph"></i>
+								</div>
+							</div>
+						</div>
+						<!-- ./col -->
+					</div>
+					<!-- /.row -->
+
+				</div>
+				<!--/. container-fluid -->
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:fragment="footer">
+			<strong>Copyright &copy; 2014-2021 <a target="_blank"
+				href="https://appmomos.com/">Appmomos</a>.
+			</strong> All rights reserved.
+		</footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+	<!-- jQuery -->
+	<script src="admin/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- overlayScrollbars -->
+	<script
+		src="admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="admin/dist/js/adminlte.js"></script>
+
+	<!-- PAGE PLUGINS -->
+	<!-- jQuery Mapael -->
+	<script src="admin/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+	<script src="admin/plugins/raphael/raphael.min.js"></script>
+	<script src="admin/plugins/jquery-mapael/jquery.mapael.min.js"></script>
+	<script src="admin/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+	<!-- ChartJS -->
+	<script src="admin/plugins/chart.js/Chart.min.js"></script>
+
+	<!-- AdminLTE for demo purposes -->
+	<script src="admin/dist/js/demo.js"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script src="admin/dist/js/pages/dashboard2.js"></script>
+</body>
+</html>
