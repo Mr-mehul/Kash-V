@@ -22,10 +22,10 @@ spring:
     cache: false
     suffix: .html
   mail:
-    host: webmail.appmomos.com
+    host: HostName
     port: 587
-    username: mehul@appmomos.com
-    password: Appmomos@123
+    username: UserName
+    password: Password
     properties:
       mail:
         smtp:
@@ -40,8 +40,8 @@ server:
 aws:
   access:
     key:
-      id : AKIA3ZHS3EORC37CTLXQ
-      secret : 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
+      id : Id
+      secret : Key
   region : ap-south-1
   s3:
     audio:
