@@ -12,8 +12,8 @@ public class SmsGatway {
 
 	static int min = 3000;
 	static int max = 7000;
-	static String authId = "MAMWE5MTNLNWM3ZTM0NW";
-	static String authToken = "Njk0MmNkYjFhYjcwZGNhYjlkZDI5M2UwZWRhMzQz";
+	static String authId = "MAMWE5MTNLNWTM0NW";
+	static String authToken = "Njk0MmNkYjFhYjcwZGNhYjZDI5M2UwZWRhMzQz";
 
 	public static int sendotp(String number) throws Exception {
 		int otp = (int) (Math.random() * max + min);
